@@ -1,0 +1,61 @@
+{
+  "id": "voxvey",
+  "name": "Voxvey",
+  "description": "Voxvey OpenAI-compatible model provider with OAuth login",
+  "version": "0.1.0",
+  "activation": {
+    "onStartup": false
+  },
+  "providers": ["voxvey"],
+  "providerEndpoints": [
+    {
+      "endpointClass": "voxvey",
+      "hosts": ["api.voxvey.com"]
+    }
+  ],
+  "providerRequest": {
+    "providers": {
+      "voxvey": {
+        "family": "openai-compatible"
+      }
+    }
+  },
+  "modelIdNormalization": {
+    "providers": {
+      "voxvey": {
+        "prefixWhenBare": "voxvey"
+      }
+    }
+  },
+  "providerAuthChoices": [
+    {
+      "provider": "voxvey",
+      "method": "oauth",
+      "choiceId": "voxvey",
+      "choiceLabel": "Voxvey Login",
+      "choiceHint": "Sign in with your Voxvey account",
+      "assistantPriority": -30,
+      "groupId": "voxvey",
+      "groupLabel": "Voxvey",
+      "groupHint": "Voxvey sign-in",
+      "onboardingFeatured": true
+    },
+    {
+      "provider": "voxvey",
+      "method": "device-code",
+      "choiceId": "voxvey-device-code",
+      "choiceLabel": "Voxvey Device Pairing",
+      "choiceHint": "Pair your Voxvey account in browser with a device code",
+      "assistantPriority": -10,
+      "assistantVisibility": "manual-only",
+      "groupId": "voxvey",
+      "groupLabel": "Voxvey",
+      "groupHint": "Voxvey sign-in"
+    }
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

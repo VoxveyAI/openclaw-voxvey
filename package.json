@@ -1,0 +1,42 @@
+{
+  "name": "@voxvey/openclaw-provider",
+  "version": "0.1.0",
+  "description": "Voxvey provider plugin for OpenClaw",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "openclaw.plugin.json"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "prepack": "npm run build"
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "openclaw": "^2026.6.1",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.7"
+  },
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ],
+    "compat": {
+      "pluginApi": ">=2026.6.1",
+      "minGatewayVersion": "2026.6.1"
+    },
+    "build": {
+      "openclawVersion": "2026.6.1",
+      "pluginSdkVersion": "2026.6.1"
+    }
+  }
+}
