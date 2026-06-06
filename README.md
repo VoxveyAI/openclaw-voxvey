@@ -1,6 +1,6 @@
 # Voxvey OpenClaw Provider
 
-An OpenClaw provider plugin for Voxvey. It adds `voxvey` as an OpenAI-compatible model provider and supports user login through Voxvey OAuth.
+An OpenClaw provider plugin for Voxvey. It adds Voxvey models, media generation, realtime model metadata, and Voxvey Search using user login through Voxvey OAuth.
 
 ## Features
 
@@ -8,7 +8,11 @@ An OpenClaw provider plugin for Voxvey. It adds `voxvey` as an OpenAI-compatible
 - Device-code login for terminal or remote setups.
 - Refresh-token support.
 - Live model discovery from the Voxvey API.
-- OpenAI-compatible chat-completions transport.
+- OpenAI-compatible Responses transport for text and multimodal models.
+- Image generation and image edits through `https://api.voxvey.com/v1/images/*`.
+- Video generation through `https://api.voxvey.com/v1/videos/generations`.
+- Realtime model entries for Voxvey-supported realtime models.
+- Voxvey Search as a Firecrawl-compatible web search provider.
 
 ## Requirements
 
@@ -71,6 +75,8 @@ Example model reference:
 ```text
 voxvey/<model-id>
 ```
+
+Voxvey Search registers as `voxvey-search` and uses the same Voxvey login. Image and video generation register under the `voxvey` provider id.
 
 ## Development
 

@@ -10,6 +10,7 @@ import {
   VOXVEY_API_BASE_URL,
   VOXVEY_FALLBACK_MODEL_ID,
   VOXVEY_MODELS_URL,
+  VOXVEY_REALTIME_MODELS,
 } from "./constants.js";
 import { parseJsonObject, readString } from "./http.js";
 
@@ -30,14 +31,16 @@ export function modelRefForVoxveyModel(modelId: string): string {
 
 export function buildVoxveyRuntimeModel(modelId: string): ProviderRuntimeModel {
   const id = stripVoxveyProviderPrefix(modelId);
+  const isRealtime = VOXVEY_REALTIME_MODELS.includes(id as (typeof VOXVEY_REALTIME_MODELS)[number]);
   return {
     id,
     name: id,
-    api: "openai-completions" as const,
+    api: "openai-responses" as const,
     provider: PROVIDER_ID,
     baseUrl: VOXVEY_API_BASE_URL,
     reasoning: false,
-    input: ["text"],
+    input: ["text", "image"],
+    ...(isRealtime ? { realtime: true } : {}),
     cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
     contextWindow: DEFAULT_CONTEXT_WINDOW,
     maxTokens: DEFAULT_MAX_TOKENS,
@@ -49,12 +52,14 @@ export function buildVoxveyModelDefinition(
   name = stripVoxveyProviderPrefix(modelId),
 ): ModelDefinitionConfig {
   const id = stripVoxveyProviderPrefix(modelId);
+  const isRealtime = VOXVEY_REALTIME_MODELS.includes(id as (typeof VOXVEY_REALTIME_MODELS)[number]);
   return {
     id,
     name,
-    api: "openai-completions",
+    api: "openai-responses",
     reasoning: false,
-    input: ["text"],
+    input: ["text", "image"],
+    ...(isRealtime ? { realtime: true } : {}),
     cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
     contextWindow: DEFAULT_CONTEXT_WINDOW,
     maxTokens: DEFAULT_MAX_TOKENS,
@@ -69,12 +74,13 @@ export function buildVoxveyProviderConfig(params: {
     params.models.length > 0
       ? params.models.map((model) => buildVoxveyModelDefinition(model.id, model.name))
       : [buildVoxveyModelDefinition(VOXVEY_FALLBACK_MODEL_ID)];
+  const knownRealtimeModels = VOXVEY_REALTIME_MODELS.map((model) => buildVoxveyModelDefinition(model));
 
   return {
     baseUrl: VOXVEY_API_BASE_URL,
-    api: "openai-completions",
+    api: "openai-responses",
     ...(params.apiKey ? { apiKey: params.apiKey } : {}),
-    models,
+    models: [...models, ...knownRealtimeModels.filter((known) => !models.some((model) => model.id === known.id))],
   };
 }
 

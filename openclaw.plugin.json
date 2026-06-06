@@ -1,12 +1,15 @@
 {
   "id": "voxvey",
   "name": "Voxvey",
-  "description": "Voxvey OpenAI-compatible model provider with OAuth login",
-  "version": "0.1.2",
+  "description": "Voxvey provider plugin with OAuth login, Responses, media generation, realtime, and search",
+  "version": "0.2.0",
   "activation": {
     "onStartup": false
   },
   "providers": ["voxvey"],
+  "webSearchProviders": ["voxvey-search"],
+  "imageGenerationProviders": ["voxvey"],
+  "videoGenerationProviders": ["voxvey"],
   "providerEndpoints": [
     {
       "endpointClass": "voxvey",

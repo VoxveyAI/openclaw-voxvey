@@ -1,8 +1,11 @@
 export const PROVIDER_ID = "voxvey";
 export const PROVIDER_LABEL = "Voxvey";
+export const VOXVEY_SEARCH_PROVIDER_ID = "voxvey-search";
+export const VOXVEY_SEARCH_PROVIDER_LABEL = "Voxvey Search";
 
 export const VOXVEY_API_BASE_URL = "https://api.voxvey.com/v1";
 export const VOXVEY_MODELS_URL = `${VOXVEY_API_BASE_URL}/models`;
+export const VOXVEY_FIRECRAWL_BASE_URL = `${VOXVEY_API_BASE_URL}/v2`;
 export const VOXVEY_API_AUDIENCE = "https://api.voxvey.com";
 
 export const VOXVEY_ISSUER = "https://login.onehelio.com/";
@@ -18,6 +21,24 @@ export const VOXVEY_SCOPES = ["openid", "profile", "email", "offline_access"] as
 export const VOXVEY_REDIRECT_URI = "http://localhost:1455/auth/callback";
 export const VOXVEY_FALLBACK_MODEL_ID = "default";
 export const VOXVEY_FALLBACK_MODEL_REF = `${PROVIDER_ID}/${VOXVEY_FALLBACK_MODEL_ID}`;
+export const VOXVEY_DEFAULT_IMAGE_MODEL = "openai/gpt-image-1";
+export const VOXVEY_IMAGE_MODELS = [
+  VOXVEY_DEFAULT_IMAGE_MODEL,
+  "xai/grok-imagine-image",
+  "byte/seedream-4-0",
+] as const;
+export const VOXVEY_DEFAULT_VIDEO_MODEL = "openai/sora-2";
+export const VOXVEY_VIDEO_MODELS = [
+  VOXVEY_DEFAULT_VIDEO_MODEL,
+  "xai/grok-imagine-video",
+  "byte/seedance-1-0-pro",
+] as const;
+export const VOXVEY_DEFAULT_REALTIME_MODEL = "openai/gpt-realtime-2";
+export const VOXVEY_REALTIME_MODELS = [
+  VOXVEY_DEFAULT_REALTIME_MODEL,
+  "openai/gpt-realtime",
+  "xai/grok-voice-latest",
+] as const;
 
 export const DEFAULT_CONTEXT_WINDOW = 128_000;
 export const DEFAULT_MAX_TOKENS = 8_192;

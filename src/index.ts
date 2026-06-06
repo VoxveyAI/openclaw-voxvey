@@ -2,8 +2,10 @@ import { definePluginEntry, type ProviderAuthMethod } from "openclaw/plugin-sdk/
 import type { ProviderPlugin } from "openclaw/plugin-sdk/provider-model-shared";
 import { runVoxveyDeviceCodeLogin } from "./device-code.js";
 import { PROVIDER_ID, PROVIDER_LABEL } from "./constants.js";
+import { buildVoxveyImageGenerationProvider, buildVoxveyVideoGenerationProvider } from "./media.js";
 import { buildVoxveyProviderConfig, buildVoxveyRuntimeModel, fetchVoxveyModels } from "./models.js";
 import { refreshVoxveyOAuthCredential, runVoxveyOAuthLogin } from "./oauth.js";
+import { buildVoxveySearchProvider } from "./search.js";
 
 const VOXVEY_WIZARD_GROUP = {
   groupId: "voxvey",
@@ -80,6 +82,10 @@ export function buildVoxveyProvider(): ProviderPlugin {
     },
     formatApiKey: (credential) => (credential.type === "oauth" ? credential.access : ""),
     refreshOAuth: async (credential) => await refreshVoxveyOAuthCredential(credential),
+    resolveWebSocketSessionPolicy: () => ({
+      headers: { "OpenAI-Beta": "realtime=v1" },
+      degradeCooldownMs: 5_000,
+    }),
     isModernModelRef: () => true,
   };
 }
@@ -90,5 +96,8 @@ export default definePluginEntry({
   description: "Voxvey OpenAI-compatible model provider",
   register(api) {
     api.registerProvider(buildVoxveyProvider());
+    api.registerImageGenerationProvider(buildVoxveyImageGenerationProvider());
+    api.registerVideoGenerationProvider(buildVoxveyVideoGenerationProvider());
+    api.registerWebSearchProvider(buildVoxveySearchProvider());
   },
 });

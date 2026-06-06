@@ -72,20 +72,29 @@ describe("Voxvey models", () => {
   });
 
   it("builds provider config with fallback model when live catalog is empty", () => {
-    expect(buildVoxveyProviderConfig({ models: [] })).toMatchObject({
+    const fallbackConfig = buildVoxveyProviderConfig({ models: [] });
+    expect(fallbackConfig).toMatchObject({
       baseUrl: "https://api.voxvey.com/v1",
-      api: "openai-completions",
-      models: [{ id: "default", api: "openai-completions" }],
+      api: "openai-responses",
     });
+    expect(fallbackConfig.models[0]).toMatchObject({ id: "default", api: "openai-responses" });
+    expect(fallbackConfig.models).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ id: "openai/gpt-realtime-2", realtime: true }),
+        expect.objectContaining({ id: "xai/grok-voice-latest", realtime: true }),
+      ]),
+    );
 
-    expect(
-      buildVoxveyProviderConfig({
-        apiKey: "token",
-        models: [{ id: "model-a", name: "Model A" }],
-      }),
-    ).toMatchObject({
+    const liveConfig = buildVoxveyProviderConfig({
       apiKey: "token",
       models: [{ id: "model-a", name: "Model A" }],
     });
+    expect(liveConfig.apiKey).toBe("token");
+    expect(liveConfig.models).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ id: "model-a", name: "Model A" }),
+        expect.objectContaining({ id: "openai/gpt-realtime-2", realtime: true }),
+      ]),
+    );
   });
 });
