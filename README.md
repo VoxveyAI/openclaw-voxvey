@@ -2,23 +2,27 @@
 
 An OpenClaw provider plugin for Voxvey. It adds Voxvey models, media generation, realtime model metadata, and Voxvey Search using user login through Voxvey OAuth.
 
+Users can use their Voxvey account and available Voxvey Credits directly inside OpenClaw, making Voxvey models and tools available anywhere OpenClaw runs.
+
 ## Features
 
-- Browser OAuth login with PKCE.
-- Device-code login for terminal or remote setups.
-- Refresh-token support.
-- Live model discovery from the Voxvey API.
-- OpenAI-compatible Responses transport for text and multimodal models.
-- Image generation and image edits through `https://api.voxvey.com/v1/images/*`.
-- Video generation through `https://api.voxvey.com/v1/videos/generations`.
-- Realtime model entries for Voxvey-supported realtime models.
-- Voxvey Search as a Firecrawl-compatible web search provider.
+* Browser OAuth login with PKCE.
+* Device-code login for terminal or remote setups.
+* Refresh-token support.
+* Live model discovery from the Voxvey API.
+* Use available Voxvey Credits for supported OpenClaw model, media, realtime, and search usage.
+* OpenAI-compatible Responses transport for text and multimodal models.
+* Image generation and image edits through `https://api.voxvey.com/v1/images/*`.
+* Video generation through `https://api.voxvey.com/v1/videos/generations`.
+* Realtime model entries for Voxvey-supported realtime models.
+* Voxvey Search as a Firecrawl-compatible web search provider.
 
 ## Requirements
 
-- Node.js 22 or newer.
-- OpenClaw 2026.6.1 or newer.
-- A Voxvey account with access to the Voxvey API.
+* Node.js 22 or newer.
+* OpenClaw 2026.6.1 or newer.
+* A Voxvey account with access to the Voxvey API.
+* Available Voxvey Credits for paid Voxvey usage.
 
 ## Install
 
@@ -77,6 +81,8 @@ voxvey/<model-id>
 ```
 
 Voxvey Search registers as `voxvey-search` and uses the same Voxvey login. Image and video generation register under the `voxvey` provider id.
+
+Usage made through this provider is billed to the signed-in Voxvey account and can use the account’s available Voxvey Credits for supported Voxvey API usage.
 
 ## Development
 
