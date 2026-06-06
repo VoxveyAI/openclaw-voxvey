@@ -1,6 +1,6 @@
 {
   "name": "voxvey",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Voxvey provider plugin for OpenClaw",
   "license": "MIT",
   "homepage": "https://github.com/VoxveyAI/openclaw-voxvey#readme",

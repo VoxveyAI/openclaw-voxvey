@@ -2,7 +2,7 @@
   "id": "voxvey",
   "name": "Voxvey",
   "description": "Voxvey OpenAI-compatible model provider with OAuth login",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "activation": {
     "onStartup": false
   },
