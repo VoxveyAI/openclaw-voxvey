@@ -1,8 +1,16 @@
 {
-  "name": "@voxvey/openclaw-provider",
+  "name": "auth",
   "version": "0.1.0",
   "description": "Voxvey provider plugin for OpenClaw",
   "license": "MIT",
+  "homepage": "https://github.com/VoxveyAI/openclaw-voxvey#readme",
+  "bugs": {
+    "url": "https://github.com/VoxveyAI/openclaw-voxvey/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VoxveyAI/openclaw-voxvey.git"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "exports": {
@@ -33,6 +41,11 @@
     "compat": {
       "pluginApi": ">=2026.6.1",
       "minGatewayVersion": "2026.6.1"
+    },
+    "install": {
+      "clawhubSpec": "clawhub:voxveyai/auth",
+      "defaultChoice": "clawhub",
+      "minHostVersion": ">=2026.6.1"
     },
     "build": {
       "openclawVersion": "2026.6.1",

@@ -16,6 +16,20 @@ An OpenClaw provider plugin for Voxvey. It adds `voxvey` as an OpenAI-compatible
 - OpenClaw 2026.6.1 or newer.
 - A Voxvey account with access to the Voxvey API.
 
+## Install
+
+```bash
+openclaw plugins install clawhub:voxveyai/auth
+```
+
+Restart any already-running OpenClaw gateway after installing the plugin.
+
+Verify that OpenClaw can load it:
+
+```bash
+openclaw plugins inspect voxvey --runtime --json
+```
+
 ## Install From A Local Checkout
 
 ```bash
@@ -24,12 +38,12 @@ npm run build
 npx openclaw plugins install --link .
 ```
 
-Restart any already-running OpenClaw gateway after installing or rebuilding the plugin.
+Restart any already-running OpenClaw gateway after installing or rebuilding the plugin from a local checkout.
 
 Verify that OpenClaw can load it:
 
 ```bash
-npx openclaw plugins inspect voxvey --runtime --json
+openclaw plugins inspect voxvey --runtime --json
 ```
 
 ## Sign In
