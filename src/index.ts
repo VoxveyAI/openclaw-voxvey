@@ -55,13 +55,13 @@ export function buildVoxveyProvider(): ProviderPlugin {
     catalog: {
       order: "simple",
       run: async (ctx) => {
-        const apiKey = ctx.resolveProviderApiKey(PROVIDER_ID).apiKey;
-        if (!apiKey) {
+        const accessToken = ctx.resolveProviderApiKey(PROVIDER_ID).apiKey;
+        if (!accessToken) {
           return null;
         }
-        const models = await fetchVoxveyModels({ token: apiKey });
+        const models = await fetchVoxveyModels({ token: accessToken });
         return {
-          provider: buildVoxveyProviderConfig({ apiKey, models }),
+          provider: buildVoxveyProviderConfig({ apiKey: accessToken, models }),
         };
       },
     },
