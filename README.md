@@ -19,7 +19,7 @@ An OpenClaw provider plugin for Voxvey. It adds `voxvey` as an OpenAI-compatible
 ## Install
 
 ```bash
-openclaw plugins install clawhub:voxveyai/auth
+openclaw plugins install clawhub:voxveyai/voxvey
 ```
 
 Restart any already-running OpenClaw gateway after installing the plugin.
